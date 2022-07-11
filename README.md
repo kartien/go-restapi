@@ -6,6 +6,9 @@ sudo docker run --name some-postgres -e POSTGRES_USER=your-user -e POSTGRES_PASS
 # create data on docker 
 sudo docker exec -it some-postgres bash
 
+# Login in postgres
+psql -U your-user --password
+
 # create data on postgres
 CREATE DATABASE <your-database>;
 ```
