@@ -17,7 +17,7 @@ func GetTasksHandler(w http.ResponseWriter, r *http.Request){
 }
 
 func GetTaskHandler(w http.ResponseWriter, r *http.Request){
-	var task models.User
+	var task models.Task
 	params := mux.Vars(r)
 	db.DB.First(&task, params["id"])
 
@@ -56,6 +56,6 @@ func DeleteTaskHandler(w http.ResponseWriter, r *http.Request){
 		w.Write([]byte("Task not found"))
 		return
 	}
-	db.DB.Delete(&task)
-	w.WriteHeader(http.StatusOK)
+	db.DB.Unscoped().Delete(&task)
+	w.WriteHeader(http.StatusNoContent)
 }
